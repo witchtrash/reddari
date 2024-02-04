@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  db:
+    image: postgres
+    container_name: reddari-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: reddari
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: reddari-admin
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@example.com
+      PGADMIN_DEFAULT_PASSWORD: hunter2
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  pgadmin-data:
