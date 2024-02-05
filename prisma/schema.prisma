@@ -8,17 +8,18 @@ datasource db {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  productName String
-  price       Decimal
-  abv         Decimal
-  category    Category
-  producerId  Int
-  sku         Int      @unique
-  volume      Decimal
-  wineBlend   String[]
-  year        Int?
-  producer    Producer @relation(fields: [producerId], references: [id])
+  id                 Int      @id @default(autoincrement())
+  productName        String
+  price              Decimal
+  abv                Decimal
+  category           Category
+  producerId         Int
+  sku                Int      @unique
+  volume             Decimal
+  wineVarietyBlend   String[]
+  primaryWineVariety String?
+  year               Int?
+  producer           Producer @relation(fields: [producerId], references: [id])
 }
 
 model Producer {

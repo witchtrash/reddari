@@ -1,5 +1,10 @@
-import { ProductCollectionSchema, ProductType } from '@reddari/schemas';
+import {
+  ProductCollection,
+  ProductSchema,
+  ProductType,
+} from '@reddari/schemas';
 import ky from 'ky';
+import { each, get } from 'lodash';
 import { z } from 'zod';
 
 const client = ky.extend({
@@ -55,5 +60,21 @@ export const scrape = async ({ type }: ScrapeArgs) => {
 
   const { data } = ParsedResponseDataSchema.parse(JSON.parse(actual.d));
 
-  return ProductCollectionSchema.parse(data);
+  const collection: ProductCollection = [];
+
+  each(data, (d) => {
+    try {
+      const parsed = ProductSchema.parse(d);
+      collection.push(parsed);
+    } catch {
+      const sku = get(d, 'ProductID') ?? 'Unknown';
+      const name = get(d, 'ProductName') ?? 'Unknown';
+
+      console.error('Product did not pass schema validation');
+      console.error(` · [SKU]: ${sku}`);
+      console.error(` · [Name]: ${name}`);
+    }
+  });
+
+  return collection;
 };

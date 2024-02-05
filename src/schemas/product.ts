@@ -57,7 +57,9 @@ export const ProductSchema = z.object({
    */
   ProductWine: z
     .string()
-    .transform((w) => (w.length > 1 ? map(w.split(','), trim) : [])),
+    .transform((w) =>
+      w.length > 1 ? map(w.split(','), (pw) => trim(pw, '" ')) : [],
+    ),
   /**
    * The vintage
    */
@@ -80,11 +82,11 @@ export const ProductSchema = z.object({
   /**
    * The wine producer
    */
-  ProductProducer: z.string(),
+  ProductProducer: z.string().min(1),
   /**
    * Which grape variety the wine mostly contains, used for filtering
    */
-  ProductSearchGrape: z.string(),
+  ProductSearchGrape: z.string().transform((s) => (s.length > 1 ? s : null)),
 });
 
 export const ProductCollectionSchema = z.array(ProductSchema);

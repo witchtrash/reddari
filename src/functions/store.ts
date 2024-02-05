@@ -17,7 +17,8 @@ export const store = async ({ data }: StoreArgs) => {
         price: new Prisma.Decimal(p.ProductPrice),
         volume: new Prisma.Decimal(p.ProductBottledVolume),
         abv: new Prisma.Decimal(p.ProductAlchoholVolume),
-        wineBlend: p.ProductWine,
+        wineVarietyBlend: p.ProductWine,
+        primaryWineVariety: p.ProductSearchGrape,
         year: p.ProductYear,
         producer: {
           connectOrCreate: {
@@ -39,7 +40,8 @@ export const store = async ({ data }: StoreArgs) => {
         price: new Prisma.Decimal(p.ProductPrice),
         volume: new Prisma.Decimal(p.ProductBottledVolume),
         abv: new Prisma.Decimal(p.ProductAlchoholVolume),
-        wineBlend: p.ProductWine,
+        wineVarietyBlend: p.ProductWine,
+        primaryWineVariety: p.ProductSearchGrape,
         year: p.ProductYear,
         producer: {
           connectOrCreate: {
