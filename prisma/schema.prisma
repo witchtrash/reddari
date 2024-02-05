@@ -8,9 +8,31 @@ datasource db {
 }
 
 model Product {
-  id          Int     @id @default(autoincrement())
-  productId   Int     @unique
+  id          Int      @id @default(autoincrement())
   productName String
   price       Decimal
   abv         Decimal
+  category    Category
+  producerId  Int
+  sku         Int      @unique
+  volume      Decimal
+  wineBlend   String[]
+  year        Int?
+  producer    Producer @relation(fields: [producerId], references: [id])
+}
+
+model Producer {
+  id       Int       @id @default(autoincrement())
+  country  String
+  place    String?
+  district String?
+  name     String    @unique
+  Product  Product[]
+}
+
+enum Category {
+  red
+  white
+  rose
+  bubbly
 }

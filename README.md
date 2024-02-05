@@ -2,7 +2,7 @@
 
 Website for aspirational alcoholics.
 
-## Dev
+### Dev
 
 For local development, you need Docker and Docker Compose.
 

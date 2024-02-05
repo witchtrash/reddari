@@ -1,3 +1,4 @@
+import { map, trim } from 'lodash';
 import { z } from 'zod';
 
 export const ProductTypeSchema = z.enum(['red', 'white', 'rose', 'bubbly']);
@@ -54,11 +55,13 @@ export const ProductSchema = z.object({
   /**
    * Which blends of wine this is, if it's a blend, in a comma separated list
    */
-  ProductWine: z.string(),
+  ProductWine: z
+    .string()
+    .transform((w) => (w.length > 1 ? map(w.split(','), trim) : [])),
   /**
    * The vintage
    */
-  ProductYear: z.string().transform((y) => Number(y)),
+  ProductYear: z.string().transform((y) => (y.length > 1 ? Number(y) : null)),
   /**
    * The flavor profile of the wine, robust, light, etc
    * Also in a weird format
