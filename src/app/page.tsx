@@ -13,7 +13,7 @@ const Home = async () => {
 
   return (
     <main>
-      <h1>reddari</h1>
+      <h1 className="text-3xl">reddari</h1>
       <hr />
       {map(data, (d) => (
         <Fragment key={d.id}>
