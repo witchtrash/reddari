@@ -1,5 +1,5 @@
-import { scrape } from '@reddari/functions/scrape';
-import { store } from '@reddari/functions/store';
+import { scrape } from '@app/functions/scrape';
+import { store } from '@app/functions/store';
 import type { NextRequest } from 'next/server';
 
 export const GET = async (request: NextRequest) => {
@@ -16,10 +16,22 @@ export const GET = async (request: NextRequest) => {
     );
   }
 
-  const data = await scrape({
+  const red = await scrape({
     type: 'red',
   });
-  await store({ data });
+  const white = await scrape({
+    type: 'white',
+  });
+  const rose = await scrape({
+    type: 'rose',
+  });
+  const bubbly = await scrape({
+    type: 'bubbly',
+  });
 
-  return Response.json({ data });
+  await store({ data: [...red, ...white, ...rose, ...bubbly] });
+
+  return Response.json({
+    success: true,
+  });
 };

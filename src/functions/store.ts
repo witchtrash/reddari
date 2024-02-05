@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client';
-import { ProductCollection } from '@reddari/schemas';
+import { ProductCollection } from '@app/schemas';
 import { each } from 'lodash';
 
 interface StoreArgs {

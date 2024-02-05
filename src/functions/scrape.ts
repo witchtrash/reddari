@@ -1,8 +1,4 @@
-import {
-  ProductCollection,
-  ProductSchema,
-  ProductType,
-} from '@reddari/schemas';
+import { ProductCollection, ProductSchema, ProductType } from '@app/schemas';
 import ky from 'ky';
 import { each, get } from 'lodash';
 import { z } from 'zod';
