@@ -1,22 +1,25 @@
-import { Product } from '@prisma/client';
+import React from 'react';
+
+import { Product as ProductModel } from '@prisma/client';
 import { map } from 'lodash';
 
+import { Product } from '@app/components/product';
+
 interface ProductListProps {
-  products: Product[];
+  products: ProductModel[];
 }
 export const ProductList = ({ products }: ProductListProps) => {
   return (
-    <div className="">
-      <div className="p-4 uppercase text-sm font-semibold font-sans text-gray-700">
+    <div className="grid grid-cols-12">
+      <div className="col-span-4 p-4">
         <p>filters</p>
       </div>
-      <div className="container grid grid-cols-3 p-4 gap-8 mx-auto">
-        {map(products, (product) => (
-          <div key={product.id} className="h-48 bg-surface">
-            <h2 className="text-2xl font-bold">{product.productName}</h2>
-            <p>{product.price.toString()} ISK</p>
-          </div>
-        ))}
+      <div className="col-span-8 p-4">
+        <div className="flex flex-col gap-4 divide divide-black ">
+          {map(products, (product) => (
+            <Product key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </div>
   );

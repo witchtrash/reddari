@@ -1,4 +1,7 @@
+import React from 'react';
+
 import { PrismaClient } from '@prisma/client';
+
 import { ProductList } from '@app/components/product-list';
 
 const Index = async () => {

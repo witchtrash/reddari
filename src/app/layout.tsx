@@ -1,8 +1,10 @@
-import React from 'react';
-import localFont from 'next/font/local';
-import { TopNav } from '@app/components/top-nav';
-import type { Metadata } from 'next';
 import './globals.css';
+import React from 'react';
+
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+
+import { TopNav } from '@app/components/top-nav';
 
 export const metadata: Metadata = {
   title: 'reddari',
@@ -22,19 +24,32 @@ const gambetta = localFont({
   variable: '--font-gambetta',
 });
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const switzer = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Switzer-Variable.woff2',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Switzer-VariableItalic.woff2',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-switzer',
+});
+
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html lang="en">
+      <title>foo</title>
       <body
-        className={`${gambetta.variable} font-serif bg-background text-text`}
+        className={`${gambetta.variable} ${switzer.variable} font-serif bg-background text-text`}
       >
         <TopNav />
         <main>{children}</main>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

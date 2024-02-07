@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const TopNav = () => {
   return (
     <nav className="p-4 border-b-secondary border-b">

@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient } from '@prisma/client';
-import { ProductCollection } from '@app/schemas';
 import { each } from 'lodash';
+
+import { ProductCollection } from '@app/schemas';
 
 interface StoreArgs {
   data: ProductCollection;

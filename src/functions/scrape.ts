@@ -1,7 +1,8 @@
-import { ProductCollection, ProductSchema, ProductType } from '@app/schemas';
 import ky from 'ky';
 import { each, get } from 'lodash';
 import { z } from 'zod';
+
+import { ProductCollection, ProductSchema, ProductType } from '@app/schemas';
 
 const client = ky.extend({
   headers: {
