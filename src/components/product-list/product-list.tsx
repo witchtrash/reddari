@@ -15,7 +15,7 @@ export const ProductList = ({ products }: ProductListProps) => {
         <p>filters</p>
       </div>
       <div className="col-span-8 p-4">
-        <div className="flex flex-col gap-4 divide divide-black ">
+        <div className="divide flex flex-col gap-4 divide-black ">
           {map(products, (product) => (
             <Product key={product.id} product={product} />
           ))}

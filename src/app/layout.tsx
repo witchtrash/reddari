@@ -43,7 +43,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     <html lang="en">
       <title>foo</title>
       <body
-        className={`${gambetta.variable} ${switzer.variable} font-serif bg-background text-text`}
+        className={`${gambetta.variable} ${switzer.variable} bg-background font-serif text-text`}
       >
         <TopNav />
         <main>{children}</main>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export const TopNav = () => {
   return (
-    <nav className="p-4 border-b-secondary border-b">
+    <nav className="border-b border-b-secondary p-4">
       <p className="text-3xl font-semibold">reddari.</p>
     </nav>
   );
