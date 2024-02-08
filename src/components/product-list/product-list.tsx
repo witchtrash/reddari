@@ -1,26 +1,28 @@
+'use client';
+
 import React from 'react';
 
-import { Product as ProductModel } from '@prisma/client';
-import { map } from 'lodash';
+import { InstantSearch } from 'react-instantsearch-core';
 
-import { Product } from '@app/components/product';
+import { ProductHits } from '@app/components/product-hits';
+import { typesenseAdapter } from '@app/modules/typesense';
+import { Search } from '@app/components/search/search';
 
-interface ProductListProps {
-  products: ProductModel[];
-}
-export const ProductList = ({ products }: ProductListProps) => {
+export const ProductList = () => {
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-4 p-4">
-        <p>filters</p>
-      </div>
-      <div className="col-span-8 p-4">
-        <div className="divide flex flex-col gap-4 divide-black ">
-          {map(products, (product) => (
-            <Product key={product.id} product={product} />
-          ))}
+    <InstantSearch
+      indexName="products"
+      searchClient={typesenseAdapter.searchClient}
+    >
+      <div className="grid grid-cols-12">
+        <div className="col-span-4 p-4">
+          <p>filters</p>
+          <Search />
+        </div>
+        <div className="col-span-8 p-4">
+          <ProductHits />
         </div>
       </div>
-    </div>
+    </InstantSearch>
   );
 };

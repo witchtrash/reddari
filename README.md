@@ -17,3 +17,11 @@ Migrations are done with Prisma, and follows a code-first approach.
 
 1. Make updates to the `prisma.schema`
 2. Generate a migration with `prisma migrate dev`
+
+### Typesense
+
+A Typesense container is also contained within the Docker compose file. You will need to create a search-only API key, used in the frontend.
+
+See https://typesense.org/docs/0.25.2/api/api-keys.html#create-an-api-key
+
+After generating the key, add it to your `.env.local`
