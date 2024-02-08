@@ -1,26 +1,39 @@
-version: "3.8"
+version: '3.8'
 services:
   db:
     image: postgres
     container_name: reddari-db
     restart: always
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: reddari
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: reddari-admin
     restart: always
     ports:
-      - "8888:80"
+      - '8888:80'
     environment:
       PGADMIN_DEFAULT_EMAIL: root@example.com
       PGADMIN_DEFAULT_PASSWORD: hunter2
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+  typesense:
+    image: typesense/typesense:0.25.2
+    restart: on-failure
+    ports:
+      - '8108:8108'
+    volumes:
+      - ./.typesense:/data
+    command: '--data-dir /data --api-key=typesense-key --enable-cors'
+
 volumes:
   pgadmin-data:
+  db-data:
