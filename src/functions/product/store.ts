@@ -44,6 +44,8 @@ export const store = async ({ data }: StoreArgs) => {
         wineVarietyBlend: p.ProductWine,
         primaryWineVariety: p.ProductSearchGrape,
         year: p.ProductYear,
+        // Reset the indexed flag
+        indexedAt: null,
         producer: {
           connectOrCreate: {
             create: {

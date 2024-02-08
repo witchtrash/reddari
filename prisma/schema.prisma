@@ -8,23 +8,23 @@ datasource db {
 }
 
 model Product {
-  id                 Int      @id @default(autoincrement())
+  id                 String    @id @default(uuid())
   productName        String
   price              Decimal
   abv                Decimal
   category           Category
-  producerId         Int
-  sku                Int      @unique
+  producerId         String
+  sku                Int       @unique
   volume             Decimal
   wineVarietyBlend   String[]
   primaryWineVariety String?
   year               Int?
-  producer           Producer @relation(fields: [producerId], references: [id])
+  producer           Producer  @relation(fields: [producerId], references: [id])
   indexedAt          DateTime?
 }
 
 model Producer {
-  id       Int       @id @default(autoincrement())
+  id       String    @id @default(uuid())
   country  String
   place    String?
   district String?

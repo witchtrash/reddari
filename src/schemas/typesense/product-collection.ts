@@ -21,6 +21,7 @@ export const ProductCollection: CollectionCreateSchema = {
       name: Fields.primaryWineVariety,
       type: 'string',
       facet: true,
+      optional: true,
     },
     {
       name: Fields.category,
